@@ -19,17 +19,17 @@ export default function HomePage() {
  return (
   <>
    <Navigation />
-   <div className="">
+   <div className="content">
     <h1>Nyheter</h1>
+    {result.map((item, index) => {
+     return (
+      <div key={index}>
+       {/* <Link to={`${item.id}`}>{item.title.rendered}</Link> */}
+       {item.content && <p>{parse(item.content.rendered)}</p>}
+      </div>
+     );
+    })}
    </div>
-   {result.map((item, index) => {
-    return (
-     <div key={index}>
-      {/* <Link to={`${item.id}`}>{item.title.rendered}</Link> */}
-      {item.content && <p>{parse(item.content.rendered)}</p>}
-     </div>
-    );
-   })}
   </>
  );
 }
