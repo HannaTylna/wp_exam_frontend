@@ -7,7 +7,7 @@ import Navigation from "../components/Navigation";
 export default function HomePage() {
  const [result, setResult] = useState([]);
  useEffect(() => {
-  const url = "http://localhost:8888/wordpress/wp-json/wp/v2/posts";
+  const url = `${process.env.REACT_APP_API_URL}wp/v2/posts`;
   fetch(url, {
    method: "GET",
   })

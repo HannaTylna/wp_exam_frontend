@@ -10,8 +10,7 @@ $(document).ready(function () {
 export default function Navigation() {
  const [menu, setMenu] = useState("");
  useEffect(() => {
-  const url =
-   "http://localhost:8888/wordpress/wp-json/wp/v2/menu-items?menus=3";
+  const url = `${process.env.REACT_APP_API_URL}wp/v2/menu-items?menus=3`;
   const token = localStorage.getItem("exam");
   fetch(url, {
    method: "GET",

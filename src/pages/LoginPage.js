@@ -8,7 +8,7 @@ export default function LoginPage() {
 
  function handleOnSubmit(e) {
   e.preventDefault();
-  const url = "http://localhost:8888/wordpress/wp-json/jwt-auth/v1/token";
+  const url = `${process.env.REACT_APP_API_URL}jwt-auth/v1/token`;
   const payload = {
    username,
    password,
