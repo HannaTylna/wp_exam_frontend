@@ -28,7 +28,7 @@ export default function Navigation() {
  return (
   <div className="wrapper">
    <header className="header">
-    <div className="container">
+    <div className="header__container">
      <div className="header__body">
       {/* <a href="/" className="header__logo">
        <img src={require("../images/logos.png")} alt="logo" />

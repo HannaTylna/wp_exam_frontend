@@ -1,17 +1,20 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+import NyheterPage from "./pages/NyheterPage";
 import LoginPage from "./pages/LoginPage";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
  return (
-  <BrowserRouter>
-   <Routes>
-    <Route path="/home" element={<HomePage />} />
-    <Route path="/login" element={<LoginPage />} />
-   </Routes>
-  </BrowserRouter>
+  <div>
+   <BrowserRouter>
+    <Routes>
+     <Route path="/home" element={<NyheterPage />} />
+     <Route path="/login" element={<LoginPage />} />
+    </Routes>
+   </BrowserRouter>
+  </div>
  );
 }
 
