@@ -1,38 +1,162 @@
-.App {
-  text-align: center;
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0px 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header__body {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
+  height: 100px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0px 30px 0px 0px;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.header__logo {
+  z-index: 2;
+  color: #000;
+  margin: 0px 0px 0px 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.header__logo img {
+  max-width: 100%;
+}
+
+.header__burger {
+  display: none;
+}
+
+.header__list {
+  display: flex;
+  position: relative;
+  z-index: 2;
+  margin: 0px 0px 0px 20px;
+}
+
+.header__item {
+  list-style: none;
+  margin: 0px 0px 0px 20px;
+}
+
+.header__link {
+  color: #000;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  body.lock {
+    overflow: hidden;
   }
-  to {
-    transform: rotate(360deg);
+
+  .header__body {
+    height: 150px;
+    justify-content: space-between;
+  }
+
+  .header__burger {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    z-index: 30;
+  }
+
+  .header__burger span {
+    position: absolute;
+    background-color: #c8e2e2;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    top: 8px;
+    transition: all 0.3s ease 0s;
+  }
+
+  .header__burger:before,
+  .header__burger:after {
+    content: '';
+    background-color: #c8e2e2;
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    left: 0px;
+    transition: all 0.3s ease 0s;
+  }
+
+  .header__burger:before {
+    top: 0;
+  }
+
+  .header__burger:after {
+    bottom: 0;
+  }
+
+  .header__burger.active span {
+    transform: scale(0);
+    top: 8px;
+  }
+
+  .header__burger.active:before {
+    transform: rotate(45deg);
+    top: 8px;
+  }
+
+  .header__burger.active:after {
+    transform: rotate(-45deg);
+    bottom: 8px;
+  }
+
+  .header__menu {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /* can to scroll menu when there are many points  */
+    background-color: #535353;
+    margin-top: 0px;
+    padding: 70px 10px 20px 0px;
+    transition: all 0.3s ease 0s;
+    z-index: 5;
+  }
+
+  .header__menu.active {
+    top: 0;
+  }
+
+  .header__list {
+    display: block;
+  }
+
+  .header__list li {
+    margin: 0px 0px 20px 0px;
+  }
+
+  .content__text {
+    margin: 100px 20px;
   }
 }
