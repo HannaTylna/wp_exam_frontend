@@ -1,10 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 import Navigation from "../components/Navigation";
 
-export default function NyheterPage() {
+export default function NewsListPage() {
  const [result, setResult] = useState([]);
  useEffect(() => {
   const url = `${process.env.REACT_APP_API_URL}wp/v2/posts`;
@@ -26,9 +25,9 @@ export default function NyheterPage() {
       return (
        <div key={index} className="card">
         <h5 className="card-title">{item.title.rendered}</h5>
-        <Link to={`${item.id}`} className="card-link">
+        <a href={`http://localhost:3000/${item.id}`} className="card-link">
          Mer...
-        </Link>
+        </a>
        </div>
       );
       //   return (

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import $ from "jquery";
+import { Link } from "react-router-dom";
 
 $(document).ready(function () {
  $(".header__burger").click(function (event) {
@@ -7,6 +8,7 @@ $(document).ready(function () {
   $("body").toggleClass("lock");
  });
 });
+
 export default function Navigation() {
  const [menu, setMenu] = useState("");
  useEffect(() => {
@@ -28,11 +30,8 @@ export default function Navigation() {
  return (
   <div className="wrapper">
    <header className="header">
-    <div className="header__container">
+    <div className="container">
      <div className="header__body">
-      {/* <a href="/" className="header__logo">
-       <img src={require("../images/logos.png")} alt="logo" />
-      </a> */}
       <div className="header__burger">
        <span></span>
       </div>
@@ -42,7 +41,9 @@ export default function Navigation() {
          menu.map((item, index) => {
           return (
            <li key={index} className="header__item">
-            <a href={item.url} className="header__link">
+            <a
+             href={`http://localhost:3000/${item.title.rendered}`}
+             className="header__link">
              {item.title.rendered}
             </a>
            </li>
