@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
  const [username, setUserName] = useState("");
  const [password, setPassword] = useState("");
+ const navigate = useNavigate();
+
  function handleOnSubmit(e) {
   e.preventDefault();
   const url = "http://localhost:8888/wordpress/wp-json/jwt-auth/v1/token";
@@ -23,6 +26,7 @@ export default function LoginPage() {
     console.log(data);
     const token = data.token;
     localStorage.setItem("exam", token);
+    navigate("/home");
    });
  }
  return (
