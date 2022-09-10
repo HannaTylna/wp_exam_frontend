@@ -26,12 +26,10 @@ export default function LoginPage() {
    .then((res) => res.json())
    .then((data) => {
     if (!data?.data?.status) {
-     console.log(data);
      const token = data.token;
      localStorage.setItem("exam", token);
-     navigate("/news");
+     navigate("/home");
     } else if (data.data.status === 403) {
-     console.log(data);
      setError(data.code);
     }
    });

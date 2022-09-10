@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import $ from "jquery";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 $(document).ready(function () {
@@ -25,7 +25,6 @@ export default function Navigation() {
   })
    .then((res) => res.json())
    .then((data) => {
-    console.log(data);
     setMenu(data);
    });
  }, []);

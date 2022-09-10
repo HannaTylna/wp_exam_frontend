@@ -86,10 +86,9 @@
   color: #d0312d;
 }
 
-.news__content{
+.news__content, .films__content{
   margin-top: 120px;
   text-align: center;
-  width: 1110px;
   margin: 120px auto 0px auto;
 }
 

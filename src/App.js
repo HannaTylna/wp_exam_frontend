@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NewsListPage from "./pages/NewsListPage";
 import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
-import FilmsPage from "./pages/FilmsPage";
-import CinemaPage from "./pages/CinemaPage";
+import FilmListPage from "./pages/FilmListPage";
+import CinemaListPage from "./pages/CinemaListPage";
 import NewsDetailPage from "./pages/NewsDetailPage";
+import FilmDetailPage from "./pages/FilmDetailPage";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -15,11 +15,11 @@ function App() {
    <BrowserRouter>
     <Routes>
      <Route path="/" element={<LoginPage />} />
-     <Route path="/news" element={<NewsListPage />} />
+     <Route path="/home" element={<NewsListPage />} />
      <Route path="/:id" element={<NewsDetailPage />} />
-     <Route path="/home" element={<HomePage />} />
-     <Route path="/filmer" element={<FilmsPage />} />
-     <Route path="/biografer" element={<CinemaPage />} />
+     <Route path="/filmer" element={<FilmListPage />} />
+     <Route path="/filmer/:id" element={<FilmDetailPage />} />
+     <Route path="/biografer" element={<CinemaListPage />} />
     </Routes>
    </BrowserRouter>
   </div>

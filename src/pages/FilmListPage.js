@@ -1,12 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-// import parse from "html-react-parser";
 import Navigation from "../components/Navigation";
 
-export default function NewsListPage() {
+export default function FilmListPage() {
  const [result, setResult] = useState([]);
  useEffect(() => {
-  const url = `${process.env.REACT_APP_API_URL}wp/v2/posts`;
+  const url = `${process.env.REACT_APP_API_URL}wp/v2/pages`;
   const token = localStorage.getItem("exam");
 
   fetch(url, {
@@ -18,33 +17,30 @@ export default function NewsListPage() {
   })
    .then((res) => res.json())
    .then((data) => {
+    console.log(data);
     setResult(data);
    });
- }, [result, setResult]);
+ }, []);
  return (
-  <>
+  <div>
    <Navigation />
-   <div className="content">
-    <h1 className="content__header">Nyheter</h1>
-    <div className="cards">
-     {result.map((item, index) => {
+   <div className="films__content">
+    <h1>Filmer</h1>
+    {result.map((item, index) => {
+     if (item.parent === 10) {
       return (
        <div key={index} className="card">
         <h5 className="card-title">{item.title.rendered}</h5>
-        <a href={`http://localhost:3000/${item.id}`} className="card-link">
+        <a
+         href={`http://localhost:3000/filmer/${item.id}`}
+         className="card-link">
          Mer...
         </a>
        </div>
       );
-      //   return (
-      //    <div key={index} className="card">
-      //     {/* <Link to={`${item.id}`}>{item.title.rendered}</Link> */}
-      //     {item.content && <p>{parse(item.content.rendered)}</p>}
-      //    </div>
-      //   );
-     })}
-    </div>
+     }
+    })}
    </div>
-  </>
+  </div>
  );
 }

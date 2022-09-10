@@ -8,7 +8,7 @@ export default function NewsDetail(props) {
 
  useEffect(() => {
   function fetchData() {
-   const url = `${process.env.REACT_APP_API_URL}wp/v2/posts/${props.id}`;
+   const url = `${process.env.REACT_APP_API_URL}wp/v2/pages/${props.id}`;
    const token = localStorage.getItem("exam");
    fetch(url, {
     method: "GET",
