@@ -7,8 +7,14 @@ export default function NewsListPage() {
  const [result, setResult] = useState([]);
  useEffect(() => {
   const url = `${process.env.REACT_APP_API_URL}wp/v2/posts`;
+  const token = localStorage.getItem("exam");
+
   fetch(url, {
    method: "GET",
+   headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+   },
   })
    .then((res) => res.json())
    .then((data) => {
