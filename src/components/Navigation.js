@@ -50,7 +50,7 @@ export default function Navigation() {
           );
          })}
         <li className="header__item">
-         <a href="/login" className="header__link">
+         <a href="/" className="header__link">
           Logout
          </a>
         </li>
