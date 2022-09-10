@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import $ from "jquery";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 $(document).ready(function () {
  $(".header__burger").click(function (event) {
@@ -11,6 +12,7 @@ $(document).ready(function () {
 
 export default function Navigation() {
  const [menu, setMenu] = useState("");
+ const navigate = useNavigate();
  useEffect(() => {
   const url = `${process.env.REACT_APP_API_URL}wp/v2/menu-items?menus=3`;
   const token = localStorage.getItem("exam");
@@ -27,6 +29,11 @@ export default function Navigation() {
     setMenu(data);
    });
  }, []);
+ function handleonClick() {
+  localStorage.removeItem("exam");
+  navigate("/");
+  window.location.reload();
+ }
  return (
   <div className="wrapper">
    <header className="header">
@@ -50,9 +57,9 @@ export default function Navigation() {
           );
          })}
         <li className="header__item">
-         <a href="/" className="header__link">
+         <button type="submit" onClick={handleonClick}>
           Logout
-         </a>
+         </button>
         </li>
        </ul>
       </nav>
