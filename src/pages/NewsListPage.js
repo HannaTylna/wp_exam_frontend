@@ -31,9 +31,7 @@ export default function NewsListPage() {
       return (
        <div key={index} className="card">
         <h5 className="card-title">{item.title.rendered}</h5>
-        <a
-         href={`${process.env.REACT_APP_API_URL}${item.id}`}
-         className="card-link">
+        <a href={`http://localhost:3000/${item.id}`} className="card-link">
          Mer...
         </a>
        </div>
