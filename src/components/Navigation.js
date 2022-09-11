@@ -48,7 +48,7 @@ export default function Navigation() {
           return (
            <li key={index} className="header__item">
             <a
-             href={`http://localhost:3000/${item.title.rendered}`}
+             href={`${process.env.REACT_APP_API_URL}/${item.title.rendered}`}
              className="header__link">
              {item.title.rendered}
             </a>
