@@ -47,9 +47,7 @@ export default function Navigation() {
          menu.map((item, index) => {
           return (
            <li key={index} className="header__item">
-            <a
-             href={`http://localhost:3000/${item.title.rendered}`}
-             className="header__link">
+            <a href={`/${item.title.rendered}`} className="header__link">
              {item.title.rendered}
             </a>
            </li>
