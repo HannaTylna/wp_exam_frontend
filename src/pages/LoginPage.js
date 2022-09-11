@@ -27,6 +27,7 @@ export default function LoginPage() {
    .then((data) => {
     if (!data?.data?.status) {
      const token = data.token;
+     console.log(token);
      localStorage.setItem("exam", token);
      navigate("/home");
     } else if (data.data.status === 403) {
