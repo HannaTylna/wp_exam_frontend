@@ -31,9 +31,7 @@ export default function FilmListPage() {
       return (
        <div key={index} className="card">
         <h5 className="card-title">{item.title.rendered}</h5>
-        <a
-         href={`http://localhost:3000/filmer/${item.id}`}
-         className="card-link">
+        <a href={`/biografer/${item.id}`} className="card-link">
          Mer...
         </a>
        </div>
