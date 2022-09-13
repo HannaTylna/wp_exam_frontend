@@ -25,8 +25,11 @@ const StyledButton = styled.button`
  text-transform: uppercase;
  font-weight: bold;
  border: 3px solid #000;
+ background: #fff;
  &:hover {
   border: 3px solid #d0312d;
+  background: #000;
+  color: #fff;
  }
 `;
 const StyledDiv = styled.div`
