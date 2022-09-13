@@ -36,12 +36,6 @@ export default function NewsListPage() {
         </a>
        </div>
       );
-      //   return (
-      //    <div key={index} className="card">
-      //     {/* <Link to={`${item.id}`}>{item.title.rendered}</Link> */}
-      //     {item.content && <p>{parse(item.content.rendered)}</p>}
-      //    </div>
-      //   );
      })}
     </div>
    </div>
