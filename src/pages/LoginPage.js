@@ -1,19 +1,47 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import Error from "../components/Error";
+import styled from "styled-components";
+
+const StyledHeader1 = styled.h1`
+ margin-top: 100px;
+ text-align: center;
+ font-weight: bold;
+`;
+
+const StyledLink = styled.a`
+ text-decoration: none;
+ color: #808080;
+ &:hover {
+  background: #fff;
+  color: #d0312d;
+  border-bottom: 3px dashed #d0312d;
+ }
+`;
+
+const StyledButton = styled.button`
+ margin: 0 auto;
+ padding: 10px;
+ font-size: 24px;
+ text-transform: uppercase;
+ font-weight: bold;
+ border: 3px solid #000;
+ &:hover {
+  border: 3px solid #d0312d;
+ }
+`;
+const StyledDiv = styled.div`
+ text-align: center;
+`;
 
 export default function LoginPage() {
- const [username, setUserName] = useState("");
- const [password, setPassword] = useState("");
- const [error, setError] = useState(null);
  const navigate = useNavigate();
 
  function handleOnSubmit(e) {
   e.preventDefault();
   const url = `${process.env.REACT_APP_API_URL}jwt-auth/v1/token`;
   const payload = {
-   username,
-   password,
+   username: `${process.env.REACT_APP_API_USERNAME}`,
+   password: `${process.env.REACT_APP_API_PASSWORD}`,
   };
 
   fetch(url, {
@@ -25,38 +53,33 @@ export default function LoginPage() {
   })
    .then((res) => res.json())
    .then((data) => {
-    if (!data?.data?.status) {
-     const token = data.token;
-     console.log(token);
-     console.log(url);
-     localStorage.setItem("exam", token);
-     navigate("/home");
-    } else if (data.data.status === 403) {
-     setError(data.code);
-    }
+    const token = data.token;
+    console.log(token);
+    console.log(url);
+    localStorage.setItem("exam", token);
+    navigate("/home");
    });
  }
  return (
   <div>
-   <h1>Login</h1>
-   <form onSubmit={handleOnSubmit}>
-    <Error message={error} />
-    <input
-     value={username}
-     onChange={(e) => setUserName(e.target.value)}
-     type="text"
-     placeholder="Username"
-    />
+   <StyledHeader1>
+    Welcome to Filmstaden-clone! <br />
+    This website was created using React (frontend part) and Wordpress (Backend
+    part). <br /> More information here:
     <br />
-    <input
-     value={password}
-     onChange={(e) => setPassword(e.target.value)}
-     type="password"
-     placeholder="Password"
-    />
-    <br />
-    <button type="submit">Login</button>
-   </form>
+    <StyledLink
+     href="https://github.com/HannaTylna/wp_exam_frontend"
+     target="_blank"
+     rel="noreferrer">
+     Github repository
+    </StyledLink>
+   </StyledHeader1>
+   <br />
+   <StyledDiv>
+    <StyledButton onClick={handleOnSubmit} type="submit">
+     Get started!
+    </StyledButton>
+   </StyledDiv>
   </div>
  );
 }
