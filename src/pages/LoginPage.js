@@ -57,8 +57,6 @@ export default function LoginPage() {
    .then((res) => res.json())
    .then((data) => {
     const token = data.token;
-    console.log(token);
-    console.log(url);
     localStorage.setItem("exam", token);
     navigate("/home");
    });
