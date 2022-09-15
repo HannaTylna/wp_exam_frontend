@@ -1,9 +1,8 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // import parse from "html-react-parser";
 import Navigation from "../components/Navigation";
 
-export default function NewsListPage() {
+export default function NewsListPage(props) {
  const [result, setResult] = useState([]);
  useEffect(() => {
   const url = `${process.env.REACT_APP_API_URL}wp/v2/posts`;
@@ -20,7 +19,7 @@ export default function NewsListPage() {
    .then((data) => {
     setResult(data);
    });
- }, [result, setResult]);
+ }, []);
  return (
   <>
    <Navigation />
