@@ -22,7 +22,7 @@
     ```
     npm install
     ```
- - create .env file in the root of the project and create environment secrets REACT_APP_API_URL, REACT_APP_API_USERNAME, REACT_APP_API_PASSWORD (t.ex. REACT_APP_API_URL="https://dev-YOUR_SITE_NAME.pantheonsite.io/wp-json/"; REACT_APP_API_USERNAME="YOUR_USERNAME_TO_WORDPRESS" and REACT_APP_API_PASSWORD="YOUR_PASSWORD_TO_WORDPRESS". I will describe how I created it in the Backend part);
+ - create .env file in the root of the project and create environment secrets REACT_APP_API_URL, REACT_APP_API_USERNAME, REACT_APP_API_PASSWORD (t.ex. REACT_APP_API_URL="https://dev-YOUR_SITE_NAME.pantheonsite.io/wp-json/"; REACT_APP_API_USERNAME="YOUR_USERNAME_TO_WORDPRESS" (Pantheon) and REACT_APP_API_PASSWORD="YOUR_PASSWORD_TO_WORDPRESS"(Pantheon) . I will describe how I created it in the Backend part);
     - you need to check if .env file is in .gitignore;
 
  - type the following command in your terminal to run the React project:
@@ -45,14 +45,14 @@
   git branch -M main
   git push -u origin main
   ```
- - create the necessary Environment secrets that are in the .env file locally (Settings => Actions => New repository secrets)
+ - create the necessary Environment secrets that are in the .env file locally (REACT_APP_API_URL, REACT_APP_API_PASSWORD, REACT_APP_API_USERNAME) (Settings => Actions => New repository secrets)
 ***
 ## 4. Deployment
 
  - create an account here: [Vercel](https://vercel.com/);
  - add a new project by importing from GitHub;
  - configure project:
-   - enter project name and create necessary environment variables
+   - enter project name and create necessary environment variables (REACT_APP_API_URL, REACT_APP_API_PASSWORD, REACT_APP_API_USERNAME)
    - press the button Deploy
 ***
 # II. BACKEND
