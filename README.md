@@ -78,3 +78,26 @@
  - don't forget to deploy changes after pushing;
  - if you add members to your project team they may also Clone files, change them and push them back;
  - now you can use website's url to fetch data in React. T.ex, https://dev-YOUR_SITE_NAME.pantheonsite.io/wp-json/wp/v2/posts.
+
+## Work with project in Team 
+- You are able to add team's members to the project. 
+  ![Add team members](public/Team.png)
+- After you have added team members, they will receive email with instructions.
+- Team members can clone the project locally and change Wordpress files.
+- After your receive some changes you need to deploy (both test, live deployment) the project.
+
+## Add plugin "JWT Authentication for WP-API":
+ - You need to install the JWT authentication plugin in your WordPress and activate it.
+ - It needs to commit and deploy in Pantheon. 
+ - The next step is to clone the project and to do configurations:
+   - add to .htaccess:
+   ```
+   RewriteCond %{HTTP:Authorization} ^(.*)
+   RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+   SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+   ```
+   - add to wp-config.php after "define('ABSPATH', dirname(__FILE__) . '/');":
+   ```
+   define('JWT_AUTH_SECRET_KEY', 'your-top-secret-key');
+   define('JWT_AUTH_CORS_ENABLE', true);
+   ```
