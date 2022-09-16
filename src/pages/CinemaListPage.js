@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React from "react";
 import { useState, useEffect } from "react";
 import Navigation from "../components/Navigation";
