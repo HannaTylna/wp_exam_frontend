@@ -134,11 +134,24 @@
     overflow: hidden;
   }
 
-  .header__body {
-    height: 100px;
-    justify-content: space-between;
-    z-index: 3;
+  .content__text {
+    margin: 100px 20px;
   }
+  .cards{
+    display: block;
+    text-align: center;
+  }
+  .card{
+    margin: 20px auto;
+    width: 70%;
+  }
+}
+@media(max-width: 720px) {
+    .header__body {
+        height: 100px;
+        justify-content: space-between;
+        z-index: 3;
+      }
   .header__burger {
     display: block;
     position: relative;
@@ -217,17 +230,5 @@
 
   .header__list li {
     margin: 0px 0px 20px 0px;
-  }
-
-  .content__text {
-    margin: 100px 20px;
-  }
-  .cards{
-    display: block;
-    text-align: center;
-  }
-  .card{
-    margin: 20px auto;
-    width: 70%;
   }
 }
