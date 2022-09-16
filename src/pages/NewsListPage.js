@@ -10,25 +10,27 @@ const StyledButton = styled.button`
 
 export default function NewsListPage(props) {
  const [categories, setCategories] = useState([]);
+ const [tags, setTags] = useState([]);
  const [postsByCategory, setPostsByCategory] = useState([]);
+ const [pagesByCategory, setPagesByCategory] = useState([]);
+ const [postsByTag, setPostsByTag] = useState([]);
+ const [pagesByTag, setPagesByTag] = useState([]);
 
- const getCategories = () => {
+ function getCategories() {
   const url = `${process.env.REACT_APP_API_URL}wp/v2/categories`;
-  const token = localStorage.getItem("exam");
   fetch(url, {
    method: "GET",
    headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
    },
   })
    .then((res) => res.json())
    .then((data) => {
     setCategories(data);
    });
- };
+ }
 
- const getPostByCategory = (category) => {
+ function getPostByCategory(category) {
   const url = `${process.env.REACT_APP_API_URL}wp/v2/posts?categories=${category.id}`;
   fetch(url, {
    method: "GET",
@@ -37,7 +39,54 @@ export default function NewsListPage(props) {
    .then((data) => {
     setPostsByCategory(data);
    });
- };
+ }
+
+ function getPagesByCategory(category) {
+  const url = `${process.env.REACT_APP_API_URL}wp/v2/pages?categories=${category.id}`;
+  fetch(url, {
+   method: "GET",
+  })
+   .then((res) => res.json())
+   .then((data) => {
+    setPagesByCategory(data);
+   });
+ }
+
+ function getTags() {
+  const url = `${process.env.REACT_APP_API_URL}wp/v2/tags`;
+  fetch(url, {
+   method: "GET",
+   headers: {
+    "Content-Type": "application/json",
+   },
+  })
+   .then((res) => res.json())
+   .then((data) => {
+    setTags(data);
+   });
+ }
+ function getPostByTag(tag) {
+  const url = `${process.env.REACT_APP_API_URL}wp/v2/posts?tags=${tag.id}`;
+  fetch(url, {
+   method: "GET",
+  })
+   .then((res) => res.json())
+   .then((data) => {
+    console.log(data);
+    setPostsByTag(data);
+   });
+ }
+
+ function getPagesByTag(tag) {
+  const url = `${process.env.REACT_APP_API_URL}wp/v2/pages?tags=${tag.id}`;
+  fetch(url, {
+   method: "GET",
+  })
+   .then((res) => res.json())
+   .then((data) => {
+    setPagesByTag(data);
+   });
+ }
 
  useEffect(() => {
   const url = `${process.env.REACT_APP_API_URL}wp/v2/posts`;
@@ -59,13 +108,14 @@ export default function NewsListPage(props) {
 
  useEffect(() => {
   getCategories();
+  getTags();
  }, []);
 
  return (
   <>
    <Navigation />
    <div className="content">
-    <h1 className="content__header">Nyheter</h1>
+    <h1 className="content__header">Home</h1>
     <div>
      <h2>Categories</h2>
      {categories &&
@@ -73,14 +123,70 @@ export default function NewsListPage(props) {
        return (
         <StyledButton
          key={category.id}
-         onClick={() => getPostByCategory(category)}>
+         onClick={() => {
+          getPostByCategory(category);
+          getPagesByCategory(category);
+         }}>
          {parser(category.name)}
         </StyledButton>
        );
       })}
     </div>
+
     <div className="cards">
      {postsByCategory.map((item, index) => {
+      return (
+       <div key={index} className="card">
+        <h5 className="card-title">{item.title.rendered}</h5>
+        <a href={`/${item.id}`} className="card-link">
+         Mer...
+        </a>
+       </div>
+      );
+     })}
+    </div>
+    <div className="cards">
+     {pagesByCategory.map((item, index) => {
+      return (
+       <div key={index} className="card">
+        <h5 className="card-title">{item.title.rendered}</h5>
+        <a href={`/${item.id}`} className="card-link">
+         Mer...
+        </a>
+       </div>
+      );
+     })}
+    </div>
+    <div>
+     <h2>Tags:</h2>
+     {tags &&
+      tags.map((tag) => {
+       return (
+        <StyledButton
+         key={tag.id}
+         onClick={() => {
+          getPostByTag(tag);
+          getPagesByTag(tag);
+         }}>
+         {parser(tag.name)}
+        </StyledButton>
+       );
+      })}
+    </div>
+    <div className="cards">
+     {postsByTag.map((item, index) => {
+      return (
+       <div key={index} className="card">
+        <h5 className="card-title">{item.title.rendered}</h5>
+        <a href={`/${item.id}`} className="card-link">
+         Mer...
+        </a>
+       </div>
+      );
+     })}
+    </div>
+    <div className="cards">
+     {pagesByTag.map((item, index) => {
       return (
        <div key={index} className="card">
         <h5 className="card-title">{item.title.rendered}</h5>
