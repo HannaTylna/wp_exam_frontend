@@ -54,6 +54,11 @@ export default function Navigation() {
           );
          })}
         <li className="header__item">
+         <a href={"/search"} className="header__link">
+          Search
+         </a>
+        </li>
+        <li className="header__item">
          <button type="submit" onClick={handleonClick}>
           Logout
          </button>

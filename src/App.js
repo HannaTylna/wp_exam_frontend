@@ -6,6 +6,7 @@ import FilmListPage from "./pages/FilmListPage";
 import CinemaListPage from "./pages/CinemaListPage";
 import NewsDetailPage from "./pages/NewsDetailPage";
 import FilmDetailPage from "./pages/FilmDetailPage";
+import SearchPage from "./pages/SearchPage";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -20,6 +21,7 @@ function App() {
      <Route path="/filmer" element={<FilmListPage />} />
      <Route path="/filmer/:id" element={<FilmDetailPage />} />
      <Route path="/biografer" element={<CinemaListPage />} />
+     <Route path="/search" element={<SearchPage />} />
     </Routes>
    </BrowserRouter>
   </div>
