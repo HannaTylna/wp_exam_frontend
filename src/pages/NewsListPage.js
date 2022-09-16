@@ -16,41 +16,41 @@ export default function NewsListPage(props) {
  const [postsByTag, setPostsByTag] = useState([]);
  const [pagesByTag, setPagesByTag] = useState([]);
 
- function getCategories() {
-  const url = `${process.env.REACT_APP_API_URL}wp/v2/categories`;
-  fetch(url, {
-   method: "GET",
-   headers: {
-    "Content-Type": "application/json",
-   },
-  })
-   .then((res) => res.json())
-   .then((data) => {
-    setCategories(data);
-   });
- }
+ //  function getCategories() {
+ //   const url = `${process.env.REACT_APP_API_URL}wp/v2/categories`;
+ //   fetch(url, {
+ //    method: "GET",
+ //    headers: {
+ //     "Content-Type": "application/json",
+ //    },
+ //   })
+ //    .then((res) => res.json())
+ //    .then((data) => {
+ //     setCategories(data);
+ //    });
+ //  }
 
- function getPostByCategory(category) {
-  const url = `${process.env.REACT_APP_API_URL}wp/v2/posts?categories=${category.id}`;
-  fetch(url, {
-   method: "GET",
-  })
-   .then((res) => res.json())
-   .then((data) => {
-    setPostsByCategory(data);
-   });
- }
+ //  function getPostByCategory(category) {
+ //   const url = `${process.env.REACT_APP_API_URL}wp/v2/posts?categories=${category.id}`;
+ //   fetch(url, {
+ //    method: "GET",
+ //   })
+ //    .then((res) => res.json())
+ //    .then((data) => {
+ //     setPostsByCategory(data);
+ //    });
+ //  }
 
- function getPagesByCategory(category) {
-  const url = `${process.env.REACT_APP_API_URL}wp/v2/pages?categories=${category.id}`;
-  fetch(url, {
-   method: "GET",
-  })
-   .then((res) => res.json())
-   .then((data) => {
-    setPagesByCategory(data);
-   });
- }
+ //  function getPagesByCategory(category) {
+ //   const url = `${process.env.REACT_APP_API_URL}wp/v2/pages?categories=${category.id}`;
+ //   fetch(url, {
+ //    method: "GET",
+ //   })
+ //    .then((res) => res.json())
+ //    .then((data) => {
+ //     setPagesByCategory(data);
+ //    });
+ //  }
 
  function getTags() {
   const url = `${process.env.REACT_APP_API_URL}wp/v2/tags`;
@@ -65,6 +65,16 @@ export default function NewsListPage(props) {
     setTags(data);
    });
  }
+ function getPagesByTag(tag) {
+  const url = `${process.env.REACT_APP_API_URL}wp/v2/pages?tags=${tag.id}`;
+  fetch(url, {
+   method: "GET",
+  })
+   .then((res) => res.json())
+   .then((data) => {
+    setPagesByTag(data);
+   });
+ }
  function getPostByTag(tag) {
   const url = `${process.env.REACT_APP_API_URL}wp/v2/posts?tags=${tag.id}`;
   fetch(url, {
@@ -74,17 +84,6 @@ export default function NewsListPage(props) {
    .then((data) => {
     console.log(data);
     setPostsByTag(data);
-   });
- }
-
- function getPagesByTag(tag) {
-  const url = `${process.env.REACT_APP_API_URL}wp/v2/pages?tags=${tag.id}`;
-  fetch(url, {
-   method: "GET",
-  })
-   .then((res) => res.json())
-   .then((data) => {
-    setPagesByTag(data);
    });
  }
 
@@ -107,7 +106,25 @@ export default function NewsListPage(props) {
  }, []);
 
  useEffect(() => {
-  getCategories();
+  const url = `${process.env.REACT_APP_API_URL}wp/v2/pages`;
+  const token = localStorage.getItem("exam");
+
+  fetch(url, {
+   method: "GET",
+
+   headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+   },
+  })
+   .then((res) => res.json())
+   .then((data) => {
+    setPagesByCategory(data);
+   });
+ }, []);
+
+ useEffect(() => {
+  // getCategories();
   getTags();
  }, []);
 
@@ -116,7 +133,7 @@ export default function NewsListPage(props) {
    <Navigation />
    <div className="content">
     <h1 className="content__header">Home</h1>
-    <div>
+    {/* <div>
      <h2>Categories</h2>
      {categories &&
       categories.map((category) => {
@@ -150,13 +167,13 @@ export default function NewsListPage(props) {
       return (
        <div key={index} className="card">
         <h5 className="card-title">{item.title.rendered}</h5>
-        <a href={`/${item.id}`} className="card-link">
+        <a href={`/filmer/${item.id}`} className="card-link">
          Mer...
         </a>
        </div>
       );
      })}
-    </div>
+    </div> */}
     <div>
      <h2>Tags:</h2>
      {tags &&
@@ -165,8 +182,8 @@ export default function NewsListPage(props) {
         <StyledButton
          key={tag.id}
          onClick={() => {
-          getPostByTag(tag);
           getPagesByTag(tag);
+          getPostByTag(tag);
          }}>
          {parser(tag.name)}
         </StyledButton>
@@ -190,7 +207,7 @@ export default function NewsListPage(props) {
       return (
        <div key={index} className="card">
         <h5 className="card-title">{item.title.rendered}</h5>
-        <a href={`/${item.id}`} className="card-link">
+        <a href={`/filmer/${item.id}`} className="card-link">
          Mer...
         </a>
        </div>
