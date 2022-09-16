@@ -1,9 +1,11 @@
+/* eslint-disable array-callback-return */
 import React from "react";
 import { useState, useEffect } from "react";
 import Navigation from "../components/Navigation";
 
 export default function FilmListPage() {
  const [result, setResult] = useState([]);
+
  useEffect(() => {
   const url = `${process.env.REACT_APP_API_URL}wp/v2/pages`;
   const token = localStorage.getItem("exam");
@@ -26,6 +28,7 @@ export default function FilmListPage() {
    <Navigation />
    <div className="films__content">
     <h1>Filmer</h1>
+
     {result.map((item, index) => {
      if (item.parent === 10) {
       return (
