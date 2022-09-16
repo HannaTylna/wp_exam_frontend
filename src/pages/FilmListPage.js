@@ -28,19 +28,20 @@ export default function FilmListPage() {
    <Navigation />
    <div className="films__content">
     <h1>Filmer</h1>
-
-    {result.map((item, index) => {
-     if (item.parent === 10) {
-      return (
-       <div key={index} className="card">
-        <h5 className="card-title">{item.title.rendered}</h5>
-        <a href={`/filmer/${item.id}`} className="card-link">
-         Mer...
-        </a>
-       </div>
-      );
-     }
-    })}
+    <div className="cards">
+     {result.map((item, index) => {
+      if (item.parent === 10) {
+       return (
+        <div key={index} className="card">
+         <h5 className="card-title">{item.title.rendered}</h5>
+         <a href={`/filmer/${item.id}`} className="card-link">
+          Mer...
+         </a>
+        </div>
+       );
+      }
+     })}
+    </div>
    </div>
   </div>
  );
