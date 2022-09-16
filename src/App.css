@@ -30,6 +30,7 @@
   width: 100%;
   align-items: center;
   margin: 0px 0px 0px 0px;
+  z-index: 3;
 }
 
 .header__burger {
@@ -59,7 +60,7 @@
   color: #d0312d;
 }
 .content{
-  margin-top: 130px;
+  margin-top: 100px;
   display: grid;
 }
 .content__header{
@@ -70,6 +71,7 @@
   justify-content: space-between;
 }
 .card{
+  width: 33.3%;
   margin: 15px;
   border: 1px solid #808080;
   box-shadow: 5px 5px 5px #535353;
@@ -87,12 +89,47 @@
 }
 
 .news__content, .films__content{
-  margin-top: 120px;
   text-align: center;
   margin: 120px auto 0px auto;
 }
 
-@media (max-width: 767px) {
+.search {
+  padding: 10px;
+  font-size: 20px;
+  border: 2px solid #535353;
+}
+
+.list {
+  text-decoration: none;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.listItem {
+  margin-bottom: 20px;
+  font-size: 25px;
+  color: #444;
+  font-weight: 300;
+
+}
+.listItem a{
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+.listItem a:hover{
+  color: #d0312d;
+  border-bottom: 2px solid #d0312d;
+}
+.content__search{
+  display: grid;
+  background-color: #535353;
+  width: 50%;
+  margin: 110px auto 0px auto;
+}
+
+@media (max-width: 925px) {
   body.lock {
     overflow: hidden;
   }
@@ -100,8 +137,8 @@
   .header__body {
     height: 100px;
     justify-content: space-between;
+    z-index: 3;
   }
-
   .header__burger {
     display: block;
     position: relative;
@@ -187,5 +224,10 @@
   }
   .cards{
     display: block;
+    text-align: center;
+  }
+  .card{
+    margin: 20px auto;
+    width: 70%;
   }
 }
